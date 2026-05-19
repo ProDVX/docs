@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>API Docs</title>
+  <meta charset="utf-8"/>
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/swagger-ui-dist/swagger-ui.css">
+</head>
+<body>
+  <div id="swagger-ui"></div>
+  <script src="https://unpkg.com/js-yaml/dist/js-yaml.min.js"></script>
+  <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js"></script>
+  <script>
+    const spec = `
+openapi: 3.0.3
+info:
+  title: ProDVX PuKK REST API Specification
+  version: "1.0.3"
+  description: This described the functions that can control the Led ring on the device, read NFC
+  contact:
+    name: ProDVX Support
+    email: support@prodvx.com
+  license:
+    name: No active license
+    url: testurl
+  x-logo:
+    url: "https://raw.githubusercontent.com/JelleProDVX/privatehostrepo991i5xiIfC3vrDnpRwiKfaYNXeqOAc/refs/heads/main/1-vertical.svg"
+
+tags:
+  - name: led
+    description: Control the leds
+  - name: update
+    description: Update the PuKK
+  # - name: info
+  #   description: Get information about the PuKK
+  # - name: unused
+  #   description: Unused endpoints
+
+servers:
+  - url: http://{ip_address}/api
+    description: PuKK REST API
+    variables:
+      ip_address:
+        default: "192.168.1.100"
+
+security: 
+  - NONE: []
+
+paths:
+  '/setLeds':
+    post:
+      operationId: setLeds
+      tags:
+        - led
+      summary: Sets the leds to a static color
+      requestBody:
+        $ref: "#/components/requestBodies/LedStatic"
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum:
+                      - OK
+                  message:
+                    type: string
+                    example: "Leds set to [255,255,255,255]"
+        "400":
+          description: Invalid Body
+        default:
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+                
+  '/setLeds/off':
+    post: 
+      operationId: setLedsOff
+      tags:
+        - led
+      summary: Turns the leds off
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema: 
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum:
+                      - OK
+                  message:
+                    type: string
+                    example: "Leds turned off"
+        "400":
+          description: Invalid Body
+        default:
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          
+  '/setLeds/marquee':
+    post: 
+      operationId: setLedsMarquee
+      tags:
+        - led
+      summary: Spins the Led around using single LED
+      requestBody: 
+        $ref: "#/components/requestBodies/LedRotation"
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema: 
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum:
+                      - OK
+                  message:
+                    type: string
+                    example: "Leds set to marquee with color [255,255,255,255]"
+        "400":
+          description: Invalid Body
+        default:
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  '/setLeds/breathe':
+    post: 
+      operationId: setLedsBreathe
+      summary: Set Leds to breathe with a color
+      tags:
+        - led
+      requestBody: 
+        $ref: '#/components/requestBodies/LedDynamic'
+
+      responses: 
+        '200':
+          description: Successful response
+        '400':
+          description: Bad Request or could not parse JSON.
+        
+  '/setLeds/quadrant':
+    post:
+      operationId: setLedsQuadrant
+      summary: Set the leds to custom quadrants
+      tags:
+        - led
+      requestBody:
+        $ref: "#/components/requestBodies/QuadrantRing"
+      responses:
+        '200':
+          description: Successful response
+        '400':
+          description: Bad Request or could not parse JSON.
+        
+  '/setLeds/individual':
+    post:
+      operationId: setLedsIndividual
+      summary: Set leds individually
+      tags:
+        - led
+      requestBody:
+        $ref: "#/components/requestBodies/IndividualLeds"
+      responses:
+        '200':
+          description: Successful response
+        '400':
+          description: Bad Request or could not parse JSON.
+
+  '/setLeds/clock':
+    post:
+      operationId: setLedsClock
+      summary: Set the leds to a ticking clock
+      tags:
+        - led
+      requestBody:
+        $ref: '#/components/requestBodies/Clock'
+      responses:
+        '200':
+          description: Successful response
+        '400':
+          description: Bad Request or could not parse JSON.
+  
+  '/setLeds/rainbow':
+    post: 
+      operationId: setLedsRainbow
+      summary: Set the leds to a rotating rainbow
+      tags: 
+        - led
+      requestBody:
+        $ref: '#/components/requestBodies/Rainbow'
+      responses:
+        '200':
+          description: Successful response
+        '400':
+          description: Bad Request or could not parse JSON.
+
+          
+      
+  # '/systemInfo':
+  #   get:
+  #     operationId: getSystemInfo
+  #     tags:
+  #       - info
+  #     summary: Get the Pukks system information
+  #     responses:
+  #       "200":
+  #         description: Succesful response
+  #       "403":
+  #         description: Bad Request
+  
+  # '/nfcData':
+  #   get:
+  #     operationId: getNfcData
+  #     tags: 
+  #       -  info
+  #     summary: Get the currently scanned NFC Data
+  #     responses:
+  #       "200":
+  #         $ref: "#/components/responses/NFC"
+  #       "403":
+  #         description: Bad Request
+  
+  # '/deviceInfo':
+  #   get:
+  #     operationId: getDeviceInfo
+  #     summary: Get the current device info
+  #     tags:
+  #       - info
+  #     responses:
+  #       "200":
+  #         $ref: "#/components/responses/DeviceInfo"
+  #       "403":
+  #         description: Bad Request
+
+  # '/buttonStatus':
+  #   get:
+  #     operationId: getButtonStatus
+  #     tags: 
+  #       -  info
+  #     summary: Gets the latest input of the button
+  #     responses:
+  #       "200":
+  #         $ref: "#/components/responses/ButtonStatus"
+  #       "400":
+  #         description: Bad Request
+
+  # '/UART/Rx':
+  #   get:
+  #     operationId: getUart
+  #     tags:
+  #       - unused
+  #     summary: Gets the latest information from the UART slot (radar)
+  #     responses:
+  #       "200":
+  #         description: Successful response
+  #       "400":
+  #         description: Bad Request
+
+  # '/UART/Tx':
+  #   post:
+  #     operationId: postMsg
+  #     tags:
+  #       - unused
+  #     summary: Sends data to UART
+  #     responses:
+  #       "200":
+  #         description: Successful response
+  #       "400":
+  #         description: Bad Request
+  
+  '/ota':
+    post: 
+      operationId: ota
+      tags: 
+        - update
+      summary: Requests a OTA firmware update
+      parameters: 
+        - name: override_url
+          in: query  
+          required: false          
+          schema: 
+            type: string
+            example: "http://www.example.com/firmware.bin"
+      responses:
+        "200":
+          description: Successful response
+        "400":
+          description: Bad Request
+      
+  
+components:
+  schemas:
+    NFC:
+      type: object
+      properties:
+        cardType:
+          type: string
+          description: Indicates the type of NFC tag detected.
+        sensRes:
+          type: string
+          description: SENS_RES value
+        nfcId:
+          type: string
+          description: NFC Identifier
+        selRes:
+          type: string
+          description: SEL_RES value
+        bitrate:
+          type: string
+          description: Data transfer speed rate
+        afi:
+          type: string
+          description: Application Family Identifier, empty if not applicable
+        dsfid:
+          type: string
+          description: Data Storage Format Identifier, empty if not applicable
+        ndefText:
+          type: string
+          description: Text on NDEF card, empty if no text found
+        ndefUri:
+          type: string
+          description: URI on NDEF card, empty if no URI found
+        ndefUpdated:
+          type: string
+          description: Value if NDEF was succesfully read
+
+    LedColor:
+      type: object
+      properties:
+        brightness:
+          type: number
+          description: Brightness in percentage (100 is max)
+        red:
+          type: number
+          description: Value for red [0-255]
+        green:
+          type: number
+          description: Value for green [0-255]
+        blue:
+          type: number
+          description: Value for blue [0-255]
+        
+    LedStatic:
+      type: object
+      properties: 
+        color:
+          type: object
+          $ref: "#/components/schemas/LedColor"
+        duration_ms:
+          type: number
+          description: Duration of the led lighting in ms before turn off (0 is always on)
+
+    LedDynamic:
+      type: object
+      properties: 
+        color:
+          type: object
+          $ref: "#/components/schemas/LedColor"
+        duration_ms:
+          type: number
+          description: Duration of the led lighting in ms before turn off (0 is always on)
+        speed_ms:
+          type: number
+          description: Speed of the led movement
+    
+    LedRotating:
+      type: object
+      properties: 
+        color:
+          type: object
+          $ref: "#/components/schemas/LedColor"
+        duration_ms:
+          type: number
+          description: Duration of the led lighting in ms before turning off (0 is always on)
+        speed_ms:
+          type: number
+          description: Speed of the movement
+        counter_clockwise:
+          type: boolean
+          description: Flag if the direction should be counter_clockwise
+          enum:
+            - false
+            - true
+
+    QuadrantRing:
+      type: object
+      properties: 
+        quadrants:
+          type: array
+          description: Array of LedColor values for each Quadrant, starting top-right.
+          items:
+            type: object
+            $ref: "#/components/schemas/LedColor"
+        duration_ms:
+          type: number
+          description: Duration of the led lighting in ms before turn off (0 is always on)    
+
+    Clock:
+      type: object
+      properties: 
+        initial_color:
+          type: object
+          description: Initial LRGB value for all leds before clock starts.
+          $ref: "#/components/schemas/LedColor"
+        intermediate_color:
+          type: object
+          description: LRGB value for the next led to swap.
+          $ref: "#/components/schemas/LedColor"
+        end_color:
+          type: object
+          description: LRGB value for all leds after clock ends.
+          $ref: "#/components/schemas/LedColor"
+        rotation_time_s:
+          type: number
+          description: Time in seconds for one full rotation
+        counter_clockwise:
+          type: boolean
+          description: Flag if the direction should be counter_clockwise
+          enum:
+            - false
+            - true
+
+    IndividualLeds:
+      type: object
+      properties:
+        colors:
+          type: array
+          description: Array of LedColor values for each Led, starting 12h
+          items: 
+            type: object
+            $ref: "#/components/schemas/LedColor"
+        duration_ms:
+          type: number
+          description: Duration of the led lighting in ms before turn off (0 is always on)    
+
+    
+    # ButtonStatus:
+    #   type: object
+    #   properties:
+    #     buttonStatus:
+    #       type: string
+    #       enum:
+    #         - no_press
+    #         - short_press
+    #         - double_press
+    #         - long_press_3s
+    #         - long_press_5s
+    #         - long_press_15s
+
+    # DeviceInfo:
+    #   type: object
+    #   properties:
+    #     firmwareVersion:
+    #       type: string
+    #       example: "DBD32_V1.0.0"
+    #     wifiMacAddress:
+    #       type: string
+    #       example: "10:20:30:40:50:60"
+    #     ipAddress:
+    #       type: string
+    #       example: "192.168.1.100"
+    #     netmask:
+    #       type: string
+    #       example: "255.255.255.0"
+    #     gateway:
+    #       type: string
+    #       example: "192.168.0.1"
+    #     bluetoothMacAddress:
+    #       type: string
+    #       example: "10:20:30:40:50:70"
+
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+      required:
+        - code
+        - message
+
+  requestBodies:
+    LedStatic:
+      description: Static led values
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              led_values:
+                $ref: "#/components/schemas/LedStatic"
+
+    LedDynamic:
+      description: Dynamic led values
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              led_values:
+                $ref: "#/components/schemas/LedDynamic"
+    
+    LedRotation:
+      description: Rotating led values
+      content: 
+        application/json:
+          schema: 
+            type: object
+            properties:
+              led_values:
+                $ref: '#/components/schemas/LedRotating'
+
+    QuadrantRing:
+      description: Led object for quadrants
+      content: 
+        application/json:
+          schema: 
+            type: object
+            properties: 
+              led_values:
+                $ref: "#/components/schemas/QuadrantRing"
+      
+    IndividualLeds:
+      description: Led object for Individual Control
+      content:
+        application/json:
+          schema: 
+            type: object
+            properties:
+              led_values:
+                $ref: "#/components/schemas/IndividualLeds"
+    
+    Clock:
+      description: Clock values
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              led_values:
+                $ref: "#/components/schemas/Clock"
+
+    Rainbow:
+      description: Rainbow values
+      content: 
+        application/json:
+          schema: 
+            type: object
+            properties: 
+              led_values:
+                type: object
+                properties:
+                  brightness:
+                    type: number
+                    description: Brightness of the leds [0-100]
+                  duration_ms:
+                    type: number
+                    description: Duration of the led lighting in ms before turn off (0 is always on)    
+                  speed_ms:
+                    type: number
+                    description: Speed of the led movement
+                  counter_clockwise:
+                    type: boolean
+                    description: Flag if the direction should be counter_clockwise
+                    enum:
+                      - false
+                      - true
+                  
+  responses:
+    # ButtonStatus:
+    #   description: Response with latest button status
+    #   content:
+    #     application/json:
+    #       schema:
+    #         type: object
+    #         properties:
+    #           data:
+    #             $ref: "#/components/schemas/ButtonStatus"
+
+    # DeviceInfo:
+    #   description: Response with device info
+    #   content:
+    #     application/json:
+    #       schema:
+    #         type: object
+    #         properties:
+    #           data:
+    #             $ref: "#/components/schemas/DeviceInfo"
+
+    NFC:
+      description: Gets the current scanned NFC info
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: "#/components/schemas/NFC"
+
+  securitySchemes: 
+    NONE: 
+      type: http
+      description: Insecure Endpoint
+      scheme: empty
+
+    `;
+
+    SwaggerUIBundle({
+      spec: jsyaml.load(spec),
+      dom_id: '#swagger-ui',
+      presets: [SwaggerUIBundle.presets.apis, SwaggerUIBundle.SwaggerUIStandalonePreset],
+      layout: "BaseLayout"
+    });
+  </script>
+</body>
+</html>

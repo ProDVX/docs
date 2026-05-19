@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>API Docs</title>
+  <meta charset="utf-8"/>
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/swagger-ui-dist/swagger-ui.css">
+</head>
+<body>
+  <div id="swagger-ui"></div>
+  <script src="https://unpkg.com/js-yaml/dist/js-yaml.min.js"></script>
+  <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js"></script>
+  <script>
+    const spec = `
+openapi: 3.1.1
+
+info:
+  title: ProDVX PuKK Remote Server API
+  version: "1.0.3"
+  description: |
+    ## Introduction
+    This document describes the outgoing requests of the PuKK Workspace. 
+
+    ## Response Handling
+    The PuKK will expect a 200 OK response for any successful request. Any response info will not be consumed by the PuKK. Any control over the PuKK should be handled by a call to the REST API.
+
+  license: 
+    name: "Proprietary"
+    identifier: "ProDVX Proprietary License"
+    
+  contact:
+    name: ProDVX Support
+    email: support@prodvx.com
+  x-logo:
+    url: "https://raw.githubusercontent.com/JelleProDVX/privatehostrepo991i5xiIfC3vrDnpRwiKfaYNXeqOAc/refs/heads/main/1-vertical.svg"
+
+servers:
+  - url: http(s)://{server}
+    description: Custom Deskbooking Server
+    variables:
+      server:
+        default: "deskbooking.custom.com"
+
+security:
+  - NONE: []
+
+paths:
+  '/':
+    get:
+      operationId: poll
+      summary: Polling event
+      tags: [Events]
+      parameters:
+        - name: action
+          in: query
+          description: Type of action
+          required: true
+          schema: 
+            type: string
+            enum: 
+              - poll
+        - name: mac
+          in: query
+          description: Mac address of the PuKK.
+          required: true
+          schema:
+            type: string
+            example: "10:20:30:40:50:60"
+      responses: 
+        '200':
+          $ref: "#/components/responses/CommandResponse"
+        '204':
+          description: Good request, No new command
+        '400':
+          description: Bad Request
+        '500':
+          description: Internal Error
+
+    post:
+      operationId: onAction
+      summary: Event called upon input
+      tags: [ Events ]
+      parameters:
+        - name: action
+          in: query
+          description: Type of action
+          schema:
+            type: string
+            enum:
+              - short_press
+              - double_press
+              - multiple_press
+              - long_press_3s
+              - long_press_5s
+              - long_press_15s
+              - nfc
+        - name: mac
+          in: query
+          description: Mac address of the PuKK.
+          schema: 
+            type: string
+            example: "10:20:30:40:50:60"
+      requestBody:
+        required: false
+        description: Required when action=nfc, Empty otherwise
+        content:
+          application/json:
+            schema: 
+              oneOf:
+                - $ref: "#/components/schemas/NfcData"
+                - type: object
+                  description: Empty body for non-NFC actions
+                  maxProperties: 0
+      responses:
+        '200':
+          $ref: "#/components/responses/CommandResponse"
+        '204':
+          description: Good request, No new command
+        '400':
+          description: Bad Request
+        '500':
+          description: Internal Error
+
+components:
+  schemas:
+    LedColor:
+      type: object
+      required: [brightness, red, green, blue]
+      properties:
+        brightness:
+          type: number
+          description: Brightness in percentage
+          minimum: 0
+          maximum: 100
+        red:
+          type: number
+          description: Value for red
+          minimum: 0
+          maximum: 255
+        green:
+          type: number
+          description: Value for green
+          minimum: 0
+          maximum: 255
+        blue:
+          type: number
+          description: Value for blue
+          minimum: 0
+          maximum: 255
+        
+    LedStatic:
+      type: object
+      required: [color, duration_ms]
+      properties: 
+        color:
+          type: object
+          $ref: "#/components/schemas/LedColor"
+        duration_ms:
+          type: number
+          description: Duration of the led lighting in ms before turn off (0 is always on)
+
+    LedDynamic:
+      type: object
+      required: [color, duration_ms, speed_ms]
+      properties: 
+        color:
+          type: object
+          $ref: "#/components/schemas/LedColor"
+        duration_ms:
+          type: number
+          description: Duration of the led lighting in ms before turn off (0 is always on)
+        speed_ms:
+          type: number
+          description: Speed of the led movement
+    
+    LedRotating:
+      type: object
+      required: [color, duration_ms, speed_ms, counter_clockwise]
+      properties: 
+        color:
+          type: object
+          $ref: "#/components/schemas/LedColor"
+        duration_ms:
+          type: number
+          description: Duration of the led lighting in ms before turning off (0 is always on)
+        speed_ms:
+          type: number
+          description: Speed of the movement
+        counter_clockwise:
+          type: boolean
+          description: Flag if the direction should be counter_clockwise
+          enum:
+            - false
+            - true
+
+    QuadrantRing:
+      type: object
+      required: [quadrants, duration_ms]
+      properties: 
+        quadrants:
+          type: array
+          description: Array of LedColor values for each Quadrant, starting top-right.
+          items:
+            type: object
+            $ref: "#/components/schemas/LedColor"
+          minItems: 4
+          maxItems: 4
+        duration_ms:
+          type: number
+          description: Duration of the led lighting in ms before turn off (0 is always on)    
+
+    Clock:
+      type: object
+      required: [initial_color, intermediate_color, end_color, rotation_time_s, counter_clockwise]
+      properties: 
+        initial_color:
+          type: object
+          description: Initial LRGB value for all leds before clock starts.
+          $ref: "#/components/schemas/LedColor"
+        intermediate_color:
+          type: object
+          description: LRGB value for the next led to swap.
+          $ref: "#/components/schemas/LedColor"
+        end_color:
+          type: object
+          description: LRGB value for all leds after clock ends.
+          $ref: "#/components/schemas/LedColor"
+        rotation_time_s:
+          type: number
+          description: Time in seconds for one full rotation
+        counter_clockwise:
+          type: boolean
+          description: Flag if the direction should be counter_clockwise
+          enum:
+            - false
+            - true
+
+    IndividualLeds:
+      type: object
+      required: [colors, duration_ms]
+      properties:
+        colors:
+          type: array
+          description: Array of LedColor values for each Led, starting 12h
+          minItems: 12
+          maxItems: 12
+          items: 
+            type: object
+            $ref: "#/components/schemas/LedColor"
+        duration_ms:
+          type: number
+          description: Duration of the led lighting in ms before turn off (0 is always on)    
+
+    NfcData:
+      type: object
+      properties:
+        dataType:
+          type: string
+          description: Data type of the values
+          enum:
+            - Text
+            - JSON
+            - URI
+            - VCard
+        nfcId:
+          type: string
+          description: NFC Identifier
+        nfcValue:
+          type: string
+          description: Value on the NFC
+        nfcSpecs:
+          type: object
+          properties:
+            cardType:
+              type: string
+              description: Indicates the type of NFC tag detected.
+            sensRes:
+              type: string
+              description: SENS_RES value
+            
+            selRes:
+              type: string
+              description: SEL_RES value
+            bitrate:
+              type: string
+              description: Data transfer speed rate
+            afi:
+              type: string
+              description: Application Family Identifier, empty if not applicable
+            dsfid:
+              type: string
+              description: Data Storage Format Identifier, empty if not applicable
+            ndefUpdated:
+              type: string
+              description: Value if NDEF was succesfully read
+
+    Command:
+      type: object
+      required: [command]
+      discriminator:
+        propertyName: command
+        mapping:
+          set_leds: "#/components/schemas/CmdSetLeds"
+          set_leds_marquee: "#/components/schemas/CmdSetLedsMarquee"
+          set_leds_rainbow: "#/components/schemas/CmdSetLedsRainbow"
+          set_leds_breathe: "#/components/schemas/CmdSetLedsBreathe"
+          set_leds_quadrant: "#/components/schemas/CmdSetLedsQuadrant"
+          set_leds_individual: "#/components/schemas/CmdSetLedsIndividual"
+          set_leds_clock: "#/components/schemas/CmdSetLedsClock"
+          set_leds_off: "#/components/schemas/CmdSetLedsOff"
+          ota: "#/components/schemas/CmdOta"
+      oneOf:
+        - $ref: "#/components/schemas/CmdSetLeds"
+        - $ref: "#/components/schemas/CmdSetLedsMarquee"
+        - $ref: "#/components/schemas/CmdSetLedsRainbow"
+        - $ref: "#/components/schemas/CmdSetLedsBreathe"
+        - $ref: "#/components/schemas/CmdSetLedsQuadrant"
+        - $ref: "#/components/schemas/CmdSetLedsIndividual"
+        - $ref: "#/components/schemas/CmdSetLedsClock"
+        - $ref: "#/components/schemas/CmdSetLedsOff"
+        - $ref: "#/components/schemas/CmdOta"
+  
+    CmdSetLeds:
+      type: object
+      required: [command, led_values]
+      properties:
+        command:
+          type: string
+          enum: [set_leds]
+        led_values:
+          $ref: "#/components/schemas/LedStatic"
+
+    CmdSetLedsMarquee:
+      type: object
+      required: [command, led_values]
+      properties:
+        command:
+          type: string
+          enum: [set_leds_marquee]
+        led_values:
+          $ref: "#/components/schemas/LedRotating"
+
+    CmdSetLedsRainbow:
+      type: object
+      required: [command, led_values]
+      properties:
+        command:
+          type: string
+          enum: [set_leds_rainbow]
+        led_values:
+          $ref: "#/components/schemas/LedRotating"
+    
+    CmdSetLedsBreathe:
+      type: object
+      required: [command, led_values]
+      properties:
+        command:
+          type: string
+          enum: [set_leds_breathe]
+        led_values:
+          $ref: "#/components/schemas/LedDynamic"
+
+    CmdSetLedsQuadrant:
+      type: object
+      required: [command, led_values]
+      properties:
+        command:
+          type: string
+          enum: [set_leds_quadrant]
+        led_values:
+          $ref: "#/components/schemas/QuadrantRing"
+
+    CmdSetLedsClock:
+      type: object
+      required: [command, led_values]
+      properties:
+        command:
+          type: string
+          enum: [set_leds_clock]
+        led_values:
+          $ref: "#/components/schemas/Clock"
+    
+    CmdSetLedsIndividual:
+      type: object
+      required: [command, led_values]
+      properties:
+        command:
+          type: string
+          enum: [set_leds_individual]
+        led_values:
+          $ref: "#/components/schemas/IndividualLeds"
+  
+    CmdSetLedsOff:
+      type: object
+      required: [command]
+      properties:
+        command:
+          type: string
+          enum: [set_leds_off]
+
+    CmdOta:
+      type: object
+      required: [command, ota_url]
+      properties:
+        command:
+          type: string
+          enum: [ota]
+        ota_url:
+          type: string
+          description: URL to fetch the OTA update from
+
+                  
+  responses:
+    CommandResponse:
+      description: Reponse Object for a command operation. The PuKK will act upon this command
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Command"
+
+  securitySchemes:
+    NONE:
+      type: http
+      description: Insecure Endpoint
+      scheme: NONE
+
+    `;
+
+    SwaggerUIBundle({
+      spec: jsyaml.load(spec),
+      dom_id: '#swagger-ui',
+      presets: [SwaggerUIBundle.presets.apis, SwaggerUIBundle.SwaggerUIStandalonePreset],
+      layout: "BaseLayout"
+    });
+  </script>
+</body>
+</html>

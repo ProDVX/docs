@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PuKK Workspace Roadmap</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'DM Sans', sans-serif; background: #F8F7F4; color: #1A1A2E; padding: 48px 40px 80px; }
+.roadmap-wrap { max-width: 1400px; margin: 0 auto; }
+.rm-header { display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:40px; padding-bottom:24px; border-bottom:1.5px solid #E2E0DA; gap:24px; flex-wrap:wrap; }
+.rm-eyebrow { font-family:'DM Mono',monospace; font-size:11px; font-weight:500; letter-spacing:0.18em; text-transform:uppercase; color:#5C5C7A; margin-bottom:8px; }
+.rm-h1 { font-family:'DM Serif Display',serif; font-size:clamp(28px,4vw,46px); line-height:1.05; color:#1A1A2E; letter-spacing:-0.02em; }
+.rm-h1 em { font-style:italic; }
+.rm-legend { display:flex; flex-direction:column; gap:6px; align-items:flex-end; }
+.rm-legend-row { display:flex; gap:16px; flex-wrap:wrap; justify-content:flex-end; }
+.rm-legend-item { display:flex; align-items:center; gap:6px; font-size:11px; color:#5C5C7A; font-family:'DM Mono',monospace; }
+.rm-legend-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+.rm-legend-swatch { width:20px; height:8px; border-radius:3px; flex-shrink:0; }
+.rm-grid { display:grid; gap:0; border:1.5px solid #E2E0DA; border-radius:16px; overflow:hidden; box-shadow:0 4px 32px rgba(26,26,46,0.07); }
+.rm-quarter-col { border-right:1.5px solid #E2E0DA; display:flex; flex-direction:column; }
+.rm-quarter-col:last-child { border-right:none; }
+.rm-quarter-header { padding:18px 18px 14px; border-bottom:1.5px solid #E2E0DA; position:relative; overflow:hidden; text-align:right; }
+.rm-quarter-header::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; }
+.rm-quarter-label { font-family:'DM Mono',monospace; font-size:11px; font-weight:500; letter-spacing:0.15em; text-transform:uppercase; margin-bottom:4px; }
+.rm-version-badge { font-family:'DM Mono',monospace; font-size:15px; font-weight:500; color:#1A1A2E; display:flex; align-items:center; gap:6px; justify-content:flex-end; }
+.rm-version-badge.uncertain { color:#5C5C7A; }
+.rm-uncertain-mark { font-size:11px; color:#5C5C7A; font-style:italic; font-family:'DM Sans',sans-serif; }
+.rm-uncertain .rm-quarter-header { background:repeating-linear-gradient(-45deg,transparent,transparent 6px,rgba(0,0,0,0.015) 6px,rgba(0,0,0,0.015) 12px); }
+.rm-window-strip { display:flex; height:28px; border-bottom:1.5px solid #E2E0DA; font-size:9.5px; font-family:'DM Mono',monospace; font-weight:500; letter-spacing:0.04em; overflow:hidden; }
+.rm-window-seg { color:#fff; display:flex; align-items:center; justify-content:center; padding:0 8px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.rm-cards-body { padding:14px 12px; display:flex; flex-direction:column; gap:12px; flex:1; }
+.rm-cat-label { font-family:'DM Mono',monospace; font-size:9px; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; margin-bottom:6px; display:flex; align-items:center; gap:5px; }
+.rm-cat-label::after { content:''; flex:1; height:1px; opacity:0.2; background:currentColor; }
+.rm-card { border-radius:7px; padding:7px 9px; font-size:12px; line-height:1.4; border:1px solid transparent; margin-bottom:5px; }
+.rm-card:hover { transform:translateY(-1px); box-shadow:0 4px 12px rgba(0,0,0,0.10); transition:transform 0.15s,box-shadow 0.15s; }
+.rm-empty-cat { padding:5px 9px; font-size:11px; color:#5C5C7A; font-style:italic; opacity:0.5; }
+.rm-uncertainty-notice { margin-top:10px; padding:6px 9px; background:rgba(0,0,0,0.04); border-radius:6px; font-size:10.5px; color:#5C5C7A; font-style:italic; }
+.rm-certainty-bar { margin-top:28px; display:flex; align-items:center; gap:16px; }
+.rm-certainty-label { font-family:'DM Mono',monospace; font-size:10px; color:#5C5C7A; letter-spacing:0.1em; white-space:nowrap; }
+.rm-certainty-track { flex:1; height:6px; border-radius:3px; position:relative; }
+.rm-footer { margin-top:32px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; padding-top:18px; border-top:1px solid #E2E0DA; }
+.rm-footer-note { font-size:11px; color:#5C5C7A; font-family:'DM Mono',monospace; }
+.rm-footer-brand { font-family:'DM Serif Display',serif; font-size:13px; color:#5C5C7A; }
+</style>
+</head>
+<body>
+
+    <div class="roadmap-wrap">
+      <div class="rm-header">
+        <div>
+          <div class="rm-eyebrow">ProDVX · Roadmap · 2026</div>
+          <div class="rm-h1">PuKK <em>Workspace</em></div>
+        </div>
+        <div class="rm-legend">
+          <div class="rm-legend-row"><div class="rm-legend-item"><span class="rm-legend-dot" style="background:#364FC7"></span>Features</div><div class="rm-legend-item"><span class="rm-legend-dot" style="background:#087F5B"></span>Documentation</div><div class="rm-legend-item"><span class="rm-legend-dot" style="background:#ea6b11"></span>Others</div></div>
+          <div class="rm-legend-row">
+            <div class="rm-legend-item"><span class="rm-legend-swatch" style="background:#1971C2"></span>Development</div><div class="rm-legend-item"><span class="rm-legend-swatch" style="background:#9C36B5"></span>Frozen</div><div class="rm-legend-item"><span class="rm-legend-swatch" style="background:#09a851"></span>Release</div>
+          </div>
+        </div>
+      </div>
+      <div class="rm-grid" style="grid-template-columns:repeat(4,1fr)">
+        
+      <div class="rm-quarter-col">
+        <div class="rm-quarter-header" style="--qcolor:#3B5BDB">
+          <style>.rm-quarter-col:nth-child(1) .rm-quarter-header::before { background: #3B5BDB; }</style>
+          <div class="rm-quarter-label" style="color:#3B5BDB">Q1 · Jan – Mar</div>
+          <div class="rm-version-badge">Launch </div>
+        </div>
+        <div class="rm-window-strip">
+          <div class="rm-window-seg" style="background:#1971C2;flex:8">Development</div><div class="rm-window-seg" style="background:#9C36B5;flex:3">Frozen</div><div class="rm-window-seg" style="background:#09a851;flex:1"></div>
+        </div>
+        <div class="rm-cards-body">
+          
+        <div class="rm-cat-section">
+          <div class="rm-cat-label" style="color:#364FC7">Features</div>
+          <div class="rm-card" style="background:rgba(54,79,199,0.1);border-color:rgba(54,79,199,0.3);color:rgb(0,0,119)">LED Control</div><div class="rm-card" style="background:rgba(54,79,199,0.1);border-color:rgba(54,79,199,0.3);color:rgb(0,0,119)">NFC Integration</div><div class="rm-card" style="background:rgba(54,79,199,0.1);border-color:rgba(54,79,199,0.3);color:rgb(0,0,119)">Button Inputs</div><div class="rm-card" style="background:rgba(54,79,199,0.1);border-color:rgba(54,79,199,0.3);color:rgb(0,0,119)">REST API</div><div class="rm-card" style="background:rgba(54,79,199,0.1);border-color:rgba(54,79,199,0.3);color:rgb(0,0,119)">OTA updates</div><div class="rm-card" style="background:rgba(54,79,199,0.1);border-color:rgba(54,79,199,0.3);color:rgb(0,0,119)">(Re)configuration using NFC</div>
+        </div>
+        <div class="rm-cat-section">
+          <div class="rm-cat-label" style="color:#087F5B">Documentation</div>
+          <div class="rm-card" style="background:rgba(8,127,91,0.1);border-color:rgba(8,127,91,0.3);color:rgb(0,47,11)">REST API Documentation</div><div class="rm-card" style="background:rgba(8,127,91,0.1);border-color:rgba(8,127,91,0.3);color:rgb(0,47,11)">Integration / User Manual</div>
+        </div>
+        <div class="rm-cat-section">
+          <div class="rm-cat-label" style="color:#ea6b11">Others</div>
+          <div class="rm-card" style="background:rgba(234,107,17,0.1);border-color:rgba(234,107,17,0.3);color:rgb(154,27,0)">Web Configuration Generator</div><div class="rm-card" style="background:rgba(234,107,17,0.1);border-color:rgba(234,107,17,0.3);color:rgb(154,27,0)">Android Companion</div>
+        </div>
+          
+        </div>
+      </div>
+      <div class="rm-quarter-col">
+        <div class="rm-quarter-header" style="--qcolor:#0CA678">
+          <style>.rm-quarter-col:nth-child(2) .rm-quarter-header::before { background: #0CA678; }</style>
+          <div class="rm-quarter-label" style="color:#0CA678">Q2 · Apr – Jun</div>
+          <div class="rm-version-badge">v1.1.0 </div>
+        </div>
+        <div class="rm-window-strip">
+          <div class="rm-window-seg" style="background:#1971C2;flex:8">Feedback of v1.0.0</div><div class="rm-window-seg" style="background:#9C36B5;flex:3">Frozen</div><div class="rm-window-seg" style="background:#09a851;flex:1"></div>
+        </div>
+        <div class="rm-cards-body">
+          
+        <div class="rm-cat-section">
+          <div class="rm-cat-label" style="color:#364FC7">Features</div>
+          <div class="rm-card" style="background:rgba(54,79,199,0.1);border-color:rgba(54,79,199,0.3);color:rgb(0,0,119)">Bluetooth Configuration</div><div class="rm-card" style="background:rgba(54,79,199,0.1);border-color:rgba(54,79,199,0.3);color:rgb(0,0,119)">Static IP configuration</div>
+        </div>
+        <div class="rm-cat-section">
+          <div class="rm-cat-label" style="color:#087F5B">Documentation</div>
+          <div class="rm-card" style="background:rgba(8,127,91,0.1);border-color:rgba(8,127,91,0.3);color:rgb(0,47,11)">Updated Integration Manual</div><div class="rm-card" style="background:rgba(8,127,91,0.1);border-color:rgba(8,127,91,0.3);color:rgb(0,47,11)">v1.1.0 Update Log</div>
+        </div>
+        <div class="rm-cat-section">
+          <div class="rm-cat-label" style="color:#ea6b11">Others</div>
+          <div class="rm-card" style="background:rgba(234,107,17,0.1);border-color:rgba(234,107,17,0.3);color:rgb(154,27,0)">Bug Fixes</div>
+        </div>
+          
+        </div>
+      </div>
+      <div class="rm-quarter-col">
+        <div class="rm-quarter-header" style="--qcolor:#D97706">
+          <style>.rm-quarter-col:nth-child(3) .rm-quarter-header::before { background: #D97706; }</style>
+          <div class="rm-quarter-label" style="color:#D97706">Q3 · Jul – Sep</div>
+          <div class="rm-version-badge">v1.2.0 </div>
+        </div>
+        <div class="rm-window-strip">
+          <div class="rm-window-seg" style="background:#1971C2;flex:8">Feedback of v1.1.0</div><div class="rm-window-seg" style="background:#9C36B5;flex:3">Frozen</div><div class="rm-window-seg" style="background:#09a851;flex:1"></div>
+        </div>
+        <div class="rm-cards-body">
+          
+        <div class="rm-cat-section">
+          <div class="rm-cat-label" style="color:#364FC7">Features</div>
+          <div class="rm-card" style="background:rgba(54,79,199,0.1);border-color:rgba(54,79,199,0.3);color:rgb(0,0,119)">On Premise Solution</div>
+        </div>
+        <div class="rm-cat-section">
+          <div class="rm-cat-label" style="color:#087F5B">Documentation</div>
+          <div class="rm-card" style="background:rgba(8,127,91,0.1);border-color:rgba(8,127,91,0.3);color:rgb(0,47,11)">On Premise Integration Guide</div><div class="rm-card" style="background:rgba(8,127,91,0.1);border-color:rgba(8,127,91,0.3);color:rgb(0,47,11)">v1.2.0 Update Log</div>
+        </div>
+        <div class="rm-cat-section">
+          <div class="rm-cat-label" style="color:#ea6b11">Others</div>
+          <div class="rm-card" style="background:rgba(234,107,17,0.1);border-color:rgba(234,107,17,0.3);color:rgb(154,27,0)">Bug Fixes</div>
+        </div>
+          
+        </div>
+      </div>
+      <div class="rm-quarter-col rm-uncertain">
+        <div class="rm-quarter-header" style="--qcolor:#C92A2A">
+          <style>.rm-quarter-col:nth-child(4) .rm-quarter-header::before { background: #C92A2A; }</style>
+          <div class="rm-quarter-label" style="color:#C92A2A">Q4 · Oct – Dec</div>
+          <div class="rm-version-badge uncertain">v1.3.0 <span class="rm-uncertain-mark">tentative</span></div>
+        </div>
+        <div class="rm-window-strip">
+          <div class="rm-window-seg" style="background:#1971C2;flex:8">Feedback of v1.2.0</div><div class="rm-window-seg" style="background:#9C36B5;flex:3">Frozen</div><div class="rm-window-seg" style="background:#09a851;flex:1"></div>
+        </div>
+        <div class="rm-cards-body">
+          
+        <div class="rm-cat-section">
+          <div class="rm-cat-label" style="color:#364FC7">Features</div>
+          <div class="rm-empty-cat">TBD</div>
+        </div>
+        <div class="rm-cat-section">
+          <div class="rm-cat-label" style="color:#087F5B">Documentation</div>
+          <div class="rm-card" style="background:rgba(8,127,91,0.1);border-color:rgba(8,127,91,0.3);color:rgb(0,47,11)">v1.3.0 Update Log</div>
+        </div>
+        <div class="rm-cat-section">
+          <div class="rm-cat-label" style="color:#ea6b11">Others</div>
+          <div class="rm-card" style="background:rgba(234,107,17,0.1);border-color:rgba(234,107,17,0.3);color:rgb(154,27,0)">Bug Fixes</div>
+        </div>
+          <div class="rm-uncertainty-notice">◐ Subject to change — details confirmed closer to release</div>
+        </div>
+      </div>
+      </div>
+      <div class="rm-certainty-bar">
+        <span class="rm-certainty-label">CONFIRMED</span>
+        <div class="rm-certainty-track" style="background:linear-gradient(to right,#3B5BDB,#C92A2A)">
+          <span style="position:absolute;right:-8px;top:50%;transform:translateY(-50%);font-size:12px;color:#C92A2A">›</span>
+        </div>
+        <span class="rm-certainty-label">TENTATIVE</span>
+      </div>
+      <div class="rm-footer">
+        <span class="rm-footer-note">28 Feb 2026 · Subject to change</span>
+        <span class="rm-footer-brand">ProDVX</span>
+      </div>
+    </div>
+</body>
+</html>

@@ -5,7 +5,7 @@
 - [Roadmap](https://prodvx.github.io/docs/PuKK_Workspace/Roadmap)
 - [HTTPS Certificates](https://prodvx.github.io/docs/PuKK_Workspace/PuKK_Certificates.csv)
 - [Configuration Template](https://www.dropbox.com/scl/fi/ce0b8t5h6lcxizsgmpopd/default_config.jsonc?rlkey=i04wtam7bl5mts46ifhiavzgm&st=6ebcks9t&dl=1)
-- [Configuration Manual without Companion Device](https://prodvx.github.io/docs/PuKK_Workspace/PuKK%20Configuration%20Manual_Without_Companion.pdf)
+- [Configuration Manual without Companion Device](https://prodvx.github.io/docs/PuKK_Workspace/PuKK_Configuration_Manual_Without_Companion.pdf)
 
 ## Technical 
 - [PuKK Event Specification](https://prodvx.github.io/docs/PuKK_Workspace/PuKK_Event_Specification.html)

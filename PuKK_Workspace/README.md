@@ -9,7 +9,7 @@
 ## Technical 
 - [PuKK Event Specification](https://prodvx.github.io/docs/PuKK_Workspace/PuKK_Event_Specification.html)
 - [PuKK API Specification](https://prodvx.github.io/docs/PuKK_Workspace/PuKK_API_Specification.html)
-- [Configuration](./configuration/configuration_README.md)
+- [Configuration](./configuration/README.md)
 - [Configuration Schema](https://prodvx.github.io/docs/PuKK_Workspace/configuration/configuration_schema.json)
 - [Configuration Template](https://prodvx.github.io/docs/PuKK_Workspace/configuration/example_config.json)
 

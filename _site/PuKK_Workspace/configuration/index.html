@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/assets/css/style.css?v=aa8236c826cb49b75d98fb083c3a50c79b514ed7" media="screen" type="text/css">
+    <link rel="stylesheet" href="/assets/css/print.css" media="print" type="text/css">
+
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>PuKK Configuration | ProDVX Documentation</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="PuKK Configuration" />
+<meta property="og:locale" content="en_US" />
+<link rel="canonical" href="http://localhost:4000/PuKK_Workspace/configuration/" />
+<meta property="og:url" content="http://localhost:4000/PuKK_Workspace/configuration/" />
+<meta property="og:site_name" content="ProDVX Documentation" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="PuKK Configuration" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","headline":"PuKK Configuration","url":"http://localhost:4000/PuKK_Workspace/configuration/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <a href="http://localhost:4000/">
+          <h1>ProDVX Documentation</h1>
+        </a>
+        <h2></h2>
+        
+          <a href="https://github.com/ProDVX/docs" class="button"><small>View project on</small> GitHub</a>
+        
+        
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1 id="pukk-configuration">PuKK Configuration</h1>
+<p>This documents the fields that can be configured.</p>
+
+<h2 id="fields">Fields</h2>
+<p>Elaboration on fields can be found below the table</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Field Name</th>
+      <th>Type</th>
+      <th style="text-align: center">Required</th>
+      <th>Description</th>
+      <th style="text-align: center">Default value</th>
+      <th style="text-align: center">Constraints</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">wifi_ssid</td>
+      <td>string</td>
+      <td style="text-align: center">X</td>
+      <td>SSID of the WiFi Network</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">wifi_pass</td>
+      <td>string</td>
+      <td style="text-align: center">X</td>
+      <td>Password of the WiFi Network</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">wifi_hidden</td>
+      <td>boolean</td>
+      <td style="text-align: center">X</td>
+      <td>Whether the Wi-Fi network is hidden.</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">wifi_retry_interval_ms</td>
+      <td>integer</td>
+      <td style="text-align: center"> </td>
+      <td>The interval in seconds to wait before retrying Wi-Fi connection.</td>
+      <td style="text-align: center">600</td>
+      <td style="text-align: center">min. 0</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">protocol</td>
+      <td>string</td>
+      <td style="text-align: center">X</td>
+      <td>The protocol to use for communication.</td>
+      <td style="text-align: center">HTTP</td>
+      <td style="text-align: center">‘HTTP’ or ‘MQTT’</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">enable_ota</td>
+      <td>boolean</td>
+      <td style="text-align: center">X</td>
+      <td>Whether to perform OTA updates.</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">http_server_address</td>
+      <td>string</td>
+      <td style="text-align: center">X</td>
+      <td>Address of the server for the PuKK to connect to.</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">http_poll_interval_ms</td>
+      <td>integer</td>
+      <td style="text-align: center"> </td>
+      <td>Interval in ms for polling the CMS server.</td>
+      <td style="text-align: center">5000</td>
+      <td style="text-align: center">0 - 65536</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">http_authorization_token</td>
+      <td>string</td>
+      <td style="text-align: center"> </td>
+      <td>The authorization token for the server.</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">http_custom_headers</td>
+      <td>array</td>
+      <td style="text-align: center"> </td>
+      <td>Custom headers to be sent to the server.</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">mqtt_broker</td>
+      <td>string</td>
+      <td style="text-align: center"> </td>
+      <td>The address of the MQTT broker. Use ‘mqtts://’ for making use of TLS connections.</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">mqtt_port</td>
+      <td>integer</td>
+      <td style="text-align: center"> </td>
+      <td>The port of the MQTT broker.</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">0-65535</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">mqtt_username</td>
+      <td>string</td>
+      <td style="text-align: center"> </td>
+      <td>The username for the MQTT broker.</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">mqtt_password</td>
+      <td>string</td>
+      <td style="text-align: center"> </td>
+      <td>The password for the MQTT broker.</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">mqtt_topic_prefix</td>
+      <td>string</td>
+      <td style="text-align: center"> </td>
+      <td>The prefix for the MQTT topics.</td>
+      <td style="text-align: center">pukk/</td>
+      <td style="text-align: center"> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="communication-protocol">Communication Protocol</h3>
+<p>You can use either HTTP (Polling) or MQTT as your main communication protocol. You can select one or the other by the “protocol” option in the configuration.</p>
+
+<h3 id="http-server-address">HTTP Server Address</h3>
+<p>The PuKK will <strong>always</strong> put the action and MAC address behind this value as such:</p>
+
+<p><code class="language-plaintext highlighter-rouge">?action=example&amp;mac=12:34:56:78:90:ab</code>.</p>
+
+<p>For example:</p>
+
+<p>A configuration with
+<code class="language-plaintext highlighter-rouge">
+{
+	"http_server_address": "https://cms.example.com/pukk_event"
+}
+</code></p>
+
+<p>would create the request on a button press</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>POST https://cms.example.com/pukk_event?action=short_press&amp;mac=12:34:56:78:90:ab
+</code></pre></div></div>
+<p>### SSL/TLS (HTTPS/MQTTS)
+If your server requires HTTPS ensure that the http_server_address starts with https://</p>
+
+<p>If your broker is TLS secured, ensure that the mqtt_broker starts with mqtts://</p>
+
+
+        </section>
+
+        <aside id="sidebar">
+          
+
+          
+            <p class="repo-owner"><a href="https://github.com/ProDVX/docs">docs</a> is maintained by <a href="https://github.com/ProDVX">ProDVX</a>.</p>
+          
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  </body>
+</html>

@@ -1,10 +1,11 @@
-# Configuration
+# PuKK Configuration
 This documents the fields that can be configured.
 
 ## Fields
 Elaboration on fields can be found below the table
+
 | Field Name | Type | Required | Description | Default value | Constraints |
-|---|---|:---:|---|:---:|:---:|
+|:---|---|:---:|---|:---:|:---:|
 | wifi_ssid | string | X | SSID of the WiFi Network |  |  |
 | wifi_pass | string | X | Password of the WiFi Network |  |  |
 | wifi_hidden | boolean | X | Whether the Wi-Fi network is hidden. |  |  |
@@ -25,7 +26,9 @@ Elaboration on fields can be found below the table
 You can use either HTTP (Polling) or MQTT as your main communication protocol. You can select one or the other by the "protocol" option in the configuration.
 
 ### HTTP Server Address
-The PuKK will **always** put the action and MAC address behind this value as such: `?action=example&mac=12:34:56:78:90:ab`.
+The PuKK will **always** put the action and MAC address behind this value as such: 
+
+`?action=example&mac=12:34:56:78:90:ab`.
 
 For example:
 

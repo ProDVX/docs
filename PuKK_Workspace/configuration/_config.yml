@@ -1,4 +1,0 @@
-markdown: kramdown
-kramdown:
-  input: GFM
-  gfm_quirks: [no_auto_typographic]

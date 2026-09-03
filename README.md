@@ -1,4 +1,4 @@
 # ProDVX Documentation Page
 
-- [ProDVX API Specification](https://prodvx.github.io/docs/ProDVX_API/api_specification.html)
-- [PuKK Workspace](https://prodvx.github.io/docs/PuKK_Workspace)
+- [ProDVX API Specification](./ProDVX_API/api_specification.html)
+- [PuKK Workspace](./PuKK_Workspace/)

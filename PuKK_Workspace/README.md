@@ -1,18 +1,20 @@
-# PuKK Workspace Documentation
+# PuKK Workspace
 
 ## General Documentation
-- [User Manual](https://prodvx.github.io/docs/PuKK_Workspace/PuKK_Manual.pdf)
-- [Roadmap](https://prodvx.github.io/docs/PuKK_Workspace/Roadmap)
-- [HTTPS Certificates](https://prodvx.github.io/docs/PuKK_Workspace/PuKK_Certificates.csv)
-- [Configuration Manual without Companion Device](https://prodvx.github.io/docs/PuKK_Workspace/PuKK_Configuration_Manual_Without_Companion.pdf)
+- [User Manual](./PuKK_Manual.pdf)
+- [Roadmap](./Roadmap.html)
+- [HTTPS Certificates](./PuKK_Certificates.csv)
+- [Configuration Manual without Companion Device](./PuKK_Configuration_Manual_Without_Companion.pdf)
 
 ## Technical 
-- [PuKK Event Specification](https://prodvx.github.io/docs/PuKK_Workspace/PuKK_Event_Specification.html)
-- [PuKK API Specification](https://prodvx.github.io/docs/PuKK_Workspace/PuKK_API_Specification.html)
-- [Configuration](./configuration/README.md)
-- [Configuration Schema](https://prodvx.github.io/docs/PuKK_Workspace/configuration/configuration_schema.json)
-- [Configuration Template](https://prodvx.github.io/docs/PuKK_Workspace/configuration/example_config.json)
+- [PuKK Event Specification](./PuKK_Event_Specification.html)
+- [PuKK API Specification](./PuKK_API_Specification.html)
+
+### Configuration
+- [Configuration](./configuration/)
+- [Configuration Schema](./configuration/configuration_schema.json)
+- [Configuration Template](./configuration/example_config.json)
 
 ## Applications
-- [Demonstration Overview Application (Node.js, EJS)](https://github.com/ProDVX/PuKK_Overview)
+- [Demo Overview Application (Node.js, EJS)](https://github.com/ProDVX/PuKK_Overview)
 - [PuKK Configurator](https://prodvx.github.io/PuKK_Configurator/)

@@ -10,7 +10,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@0,200..900;1,200..900&display=swap');
 body {
 	// background: red;
-	font-family: 'Source Sans 3';
+	font-family: 'Source Sans 3', 'Courier New';
 	font-weight: 400;
 }
 
@@ -26,6 +26,6 @@ body {
 h1, h2, h3, h4, h5, h6,
 #main-content h1, #main-content h2, #main-content h3,
 #main-content h4, #main-content h5, #main-content h6 {
-	font-family: 'Source Sans 3';
+	font-family: 'Courier New', 'Source Sans 3';
 	font-weight: 600;
 }

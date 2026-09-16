@@ -389,8 +389,8 @@ footer a:hover { color: #444; }
   #main-content h1:before, #main-content h2:before, #main-content h3:before, #main-content h4:before, #main-content h5:before, #main-content h6:before { padding-right: 0; margin-left: 0; content: none; } }
 /* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
 /* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
-body { font-family: 'Source Sans 3'; font-weight: 400; }
+body { font-family: 'Source Sans 3', 'Courier New'; font-weight: 400; }
 
 .inner { width: 80%; margin: 0 auto; }
 
-h1, h2, h3, h4, h5, h6, #main-content h1, #main-content h2, #main-content h3, #main-content h4, #main-content h5, #main-content h6 { font-family: 'Source Sans 3'; font-weight: 600; }
+h1, h2, h3, h4, h5, h6, #main-content h1, #main-content h2, #main-content h3, #main-content h4, #main-content h5, #main-content h6 { font-family: 'Courier New', 'Source Sans 3'; font-weight: 600; }

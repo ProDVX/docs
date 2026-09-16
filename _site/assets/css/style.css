@@ -1,7 +1,7 @@
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 /** 1. Set default font family to sans-serif. 2. Prevent iOS text size adjust after orientation change, without disabling user zoom. */
 @import url("https://fonts.googleapis.com/css?family=Architects+Daughter");
-@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@0,200..900;1,200..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap");
 html { font-family: sans-serif; /* 1 */ -ms-text-size-adjust: 100%; /* 2 */ -webkit-text-size-adjust: 100%; /* 2 */ }
 
 /** Remove default margin. */
@@ -393,4 +393,4 @@ body { font-family: 'Source Sans 3', 'Courier New'; font-weight: 400; }
 
 .inner { width: 80%; margin: 0 auto; }
 
-h1, h2, h3, h4, h5, h6, #main-content h1, #main-content h2, #main-content h3, #main-content h4, #main-content h5, #main-content h6 { font-family: 'Source Sans 3', 'Courier New'; font-weight: 600; }
+h1, h2, h3, h4, h5, h6, #main-content h1, #main-content h2, #main-content h3, #main-content h4, #main-content h5, #main-content h6 { font-family: 'Source Sans 3', ''; font-weight: 600; }

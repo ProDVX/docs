@@ -15,6 +15,14 @@
 - [Configuration File Template](./configuration/example_config.json)
 - [Configuration Manual without Companion Device](./PuKK_Configuration_Manual_Without_Companion.pdf)
 
+### 1.0.3
+- [Configuration Overview](./1.0.3/)
+- [Configuration JSON File Schema](./1.0.3/configuration_schema.json)
+- [Configuration File Template](./1.0.3/example_config.json)
+- [1.0.3 Event Specification](./1.0.3/PuKK_Event_Specification.html)
+- [1.0.3 API Specification](./1.0.3/PuKK_API_Specification.html)
+
 ## Applications
 - [Demo Overview Application (Node.js, EJS)](https://github.com/ProDVX/PuKK_Overview)
 - [PuKK Configurator](https://prodvx.github.io/PuKK_Configurator/)
+

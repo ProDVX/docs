@@ -9,6 +9,7 @@
 <!-- ======================== -->
 
 # Version 1.1.0
+
 ### Features
 - Added MQTT implementation
 	- Replaces HTTP when specified in configuration
@@ -48,8 +49,8 @@
 - Updated REST API Specification
 - Removed `default_config.jsonc` as it was not default, and did not improve 
 
-
 <!-- ======================== -->
+
 ## Version 1.0.3
 - Added Changelog text
 - Implement NFC Request on all other NFC Tag Types
@@ -66,7 +67,9 @@
 - Updated User Manual
 
 <!-- ======================== -->
+
 ## Version 1.0.2
+
 ### Bug fixes
 - Fix subscription issue appending server address to subscription address
 

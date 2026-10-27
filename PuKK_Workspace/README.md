@@ -1,5 +1,8 @@
 # PuKK Workspace
 
+Notice:<br>
+Due to a core modification in the firmware, it is not possible to upgrade a device running `v1.0.3` firmware to `v1.1.0` via OTA. This must be done manually. Find the migration guide for instructions and tools to handle this upgrade.
+
 ## General Documentation
 - [User Manual](./PuKK_Manual.pdf)
 - [Roadmap](./Roadmap.html)

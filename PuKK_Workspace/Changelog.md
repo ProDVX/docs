@@ -1,16 +1,9 @@
 # PuKK Workspace Firmware Changelog
-<!-- ## Version 1.x.x -->
-<!-- ### Features -->
 
-<!-- ### Bug Fixes -->
-
-<!-- ### Documentation -->
-
-<!-- ======================== -->
-
-# Version 1.1.0
+## Version 1.1.0
 
 ### Features
+
 - Added MQTT implementation
 	- Replaces HTTP when specified in configuration
 		- Use `"protocol": "MQTT"`

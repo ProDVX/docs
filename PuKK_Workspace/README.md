@@ -8,6 +8,7 @@
 ## Technical 
 - [PuKK Event Specification](./PuKK_Event_Specification.html)
 - [PuKK API Specification](./PuKK_API_Specification.html)
+- [Changelog](./Changelog.md)
 
 ### Configuration
 - [Configuration Overview](./configuration/)
@@ -21,6 +22,7 @@
 - [Configuration File Template](./1.0.3/example_config.json)
 - [1.0.3 Event Specification](./1.0.3/PuKK_Event_Specification.html)
 - [1.0.3 API Specification](./1.0.3/PuKK_API_Specification.html)
+- [1.0.3 -> 1.1.0 Migration Guide](./1.0.3/migration_guide.md)
 
 ## Applications
 - [Demo Overview Application (Node.js, EJS)](https://github.com/ProDVX/PuKK_Overview)

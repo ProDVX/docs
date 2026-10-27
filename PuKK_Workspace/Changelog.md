@@ -7,6 +7,7 @@
 <!-- ### Documentation -->
 
 <!-- ======================== -->
+
 # Version 1.1.0
 ### Features
 - Added MQTT implementation

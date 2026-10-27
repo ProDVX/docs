@@ -4,6 +4,7 @@ Due to modifications to the firmware, some changes are required to update the Pu
 
 ## Configuration changes
 A few changes were made to the configuration. Most notably:
+
 - `cms_server_address` -> `http_server_address`
 - `do_ota` -> `enable_ota`
 - `poll_interval_ms` -> `http_poll_interval_ms`

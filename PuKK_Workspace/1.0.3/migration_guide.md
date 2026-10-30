@@ -1,6 +1,7 @@
 # PuKK Migration guide (from v1.0.3 to v1.1.0)
 
-Due to modifications to the firmware, some changes are required to update the PuKK to a new version
+Due to modifications to the firmware, some changes are required to update the PuKK to a new version.
+Please note that if there is a **BLUE MARK** next to the `1.0.3_Burn` firmware on the product box, the device is already updated to 1.1.0!
 
 ## Configuration changes
 A few changes were made to the configuration. Most notably:

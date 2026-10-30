@@ -1,0 +1,9 @@
+{
+  "wifi_ssid": "MyNetwork", 
+  "wifi_pass": "SuperSecret",
+  "wifi_hidden": false,
+  "wifi_retry_interval_s": 600,
+  "do_ota": false,  
+  "cms_server_address": "https://cms.example.com",
+  "poll_interval_ms": 5000
+}

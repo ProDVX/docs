@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/assets/css/style.css?v=36c0b9bbf5b345e99feee3f7566be52143162845" media="screen" type="text/css">
+    <link rel="stylesheet" href="/assets/css/print.css" media="print" type="text/css">
+
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>PuKK Workspace Firmware Changelog | ProDVX Documentation</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="PuKK Workspace Firmware Changelog" />
+<meta property="og:locale" content="en_US" />
+<link rel="canonical" href="http://localhost:4000/PuKK_Workspace/Changelog.html" />
+<meta property="og:url" content="http://localhost:4000/PuKK_Workspace/Changelog.html" />
+<meta property="og:site_name" content="ProDVX Documentation" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="PuKK Workspace Firmware Changelog" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","headline":"PuKK Workspace Firmware Changelog","url":"http://localhost:4000/PuKK_Workspace/Changelog.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <a href="http://localhost:4000/">
+          <h1>ProDVX Documentation</h1>
+        </a>
+        <h2></h2>
+        
+          <a href="https://github.com/ProDVX/docs" class="button"><small>View project on</small> GitHub</a>
+        
+        
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1 id="pukk-workspace-firmware-changelog">PuKK Workspace Firmware Changelog</h1>
+
+<h2 id="version-110">Version 1.1.0</h2>
+
+<h3 id="features">Features</h3>
+
+<ul>
+  <li>Added MQTT implementation
+    <ul>
+      <li>Replaces HTTP when specified in configuration
+        <ul>
+          <li>Use <code class="language-plaintext highlighter-rouge">"protocol": "MQTT"</code></li>
+        </ul>
+      </li>
+      <li>Configure MQTT using the configuration</li>
+      <li>Allows for Username/Password Authentication</li>
+      <li>Also available with TLS. Use <code class="language-plaintext highlighter-rouge">mqtts://</code> instead of <code class="language-plaintext highlighter-rouge">mqtt://</code> as URI prefix</li>
+    </ul>
+  </li>
+  <li>Added outbound Authorization header for Bearer tokens.
+    <ul>
+      <li>A value in the configuration of <code class="language-plaintext highlighter-rouge">"token123"</code> will translate to <code class="language-plaintext highlighter-rouge">"authorization": "Bearer token123"</code></li>
+    </ul>
+  </li>
+  <li>Added REST API Authorization requirement using ProDVX API Authorization tokens
+    <ul>
+      <li>A Bearer token must be provided by using <code class="language-plaintext highlighter-rouge">ProdvxPukk</code> as device key</li>
+    </ul>
+  </li>
+  <li>Added custom header support. Define these in the configuration.</li>
+  <li>Added Received Signal Strength Indicator as header <code class="language-plaintext highlighter-rouge">"X-RSSI"</code>.</li>
+  <li>Added <code class="language-plaintext highlighter-rouge">force=1</code> query parameter to the first <code class="language-plaintext highlighter-rouge">/api/poll</code> request after boot.</li>
+</ul>
+
+<h3 id="bug-fixes">Bug fixes</h3>
+<ul>
+  <li>Fix of HTTP Asynchronous issues</li>
+  <li>Fix /deviceInfo endpoint</li>
+  <li>Fix trailing slash</li>
+  <li>Fixed NFC implementation to improve capabilities
+    <ul>
+      <li>Now also supports Phone Tag Emulation through a <code class="language-plaintext highlighter-rouge">HostApduService</code>.</li>
+    </ul>
+  </li>
+  <li>Fix multiple durations not being used for leds</li>
+  <li>Fix rainbow mode not applying counter_clockwise</li>
+</ul>
+
+<h3 id="documentation">Documentation</h3>
+<ul>
+  <li>Added <code class="language-plaintext highlighter-rouge">configuration/</code> to documentation for configuration specific examples and guidance.</li>
+  <li>Added <code class="language-plaintext highlighter-rouge">configuration/example_config.json</code></li>
+  <li>Updated User Manual
+    <ul>
+      <li>Added Mounting paragraph</li>
+      <li>Added more detailed information about NFC card requirements</li>
+      <li>Added FAQ</li>
+      <li>Improved clarity in various paragraphs</li>
+      <li>Fixed Heading Numbering</li>
+    </ul>
+  </li>
+  <li>Updated Event Specification</li>
+  <li>Updated REST API Specification</li>
+  <li>Removed <code class="language-plaintext highlighter-rouge">default_config.jsonc</code> as it was not default, and did not improve</li>
+</ul>
+
+<!-- ======================== -->
+
+<h2 id="version-103">Version 1.0.3</h2>
+<ul>
+  <li>Added Changelog text</li>
+  <li>Implement NFC Request on all other NFC Tag Types</li>
+  <li>Implement WiFi retry logic on network disconnect
+    <ul>
+      <li>By default retries immediately after losing connection, then retries every 10 minutes.</li>
+      <li>Configurable via configuration per seconds.</li>
+    </ul>
+  </li>
+  <li>Integrated SSL Certficates for HTTPS connection on outgoing requests (List for certificates can be found <a href="https://www.dropbox.com/scl/fi/l58gqt4un3gx0zneoh0eg/PuKK_Certs_v1.0.3.csv?rlkey=1r3kq06mj1ega16jqkdjh4ygl&amp;st=sfzk7l8u&amp;dl=0">here</a>)</li>
+  <li>Removed some PuKK API Endpoints that were focused on On Premise solutions. Might return at a later point.</li>
+  <li>Updated API Specification</li>
+</ul>
+
+<!-- ### Bug fixes -->
+
+<h3 id="documentation-1">Documentation</h3>
+<ul>
+  <li>Updated User Manual</li>
+</ul>
+
+<!-- ======================== -->
+
+<h2 id="version-102">Version 1.0.2</h2>
+
+<h3 id="bug-fixes-1">Bug fixes</h3>
+<ul>
+  <li>Fix subscription issue appending server address to subscription address</li>
+</ul>
+
+<hr />
+
+        </section>
+
+        <aside id="sidebar">
+          
+
+          
+            <p class="repo-owner"><a href="https://github.com/ProDVX/docs">docs</a> is maintained by <a href="https://github.com/ProDVX">ProDVX</a>.</p>
+          
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  </body>
+</html>

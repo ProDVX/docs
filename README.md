@@ -1,8 +1,10 @@
 # ProDVX Documentation Page
 
-- [ProDVX API Specification](./ProDVX_API/api_specification.html)
+- [ProDVX API](./ProDVX_API/)
 - [PuKK Workspace](./PuKK_Workspace/)
+- [ProMGR](./ProMGR)
+- [ProDEPLOY](./ProDEPLOY/)
 
 ---
 
-This page is actively being worked on.
+*This page is actively being worked on.*

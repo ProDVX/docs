@@ -1,5 +1,6 @@
 # ProDVX API Release Notes
 
+<!--
 ## 1.5a
 
 ### Changes
@@ -9,7 +10,7 @@
 ### Bug Fixes
 
 - Fixed an installation flag for FLAG_MUTABLE for Android 14+
-
+-->
 
 <!-- ======================== -->
 

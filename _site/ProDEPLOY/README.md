@@ -8,7 +8,7 @@
 
 ## Release Notes
 ProDEPLOY is *__your__* tool to make deployments easier and faster. 
-Software Applications and Configurations are listed on the [Backoffice](prodeploy.prodvx.com) and made accessible with a simple 5 character code.
+Software Applications and Configurations are listed on the [Backoffice](https://prodeploy.prodvx.com) and made accessible with a simple 5 character code.
 
 > For B26 firmware, please ensure to first update ProDEPLOY by entering code `0` for AOSP and `1` for EDLA devices.
 
